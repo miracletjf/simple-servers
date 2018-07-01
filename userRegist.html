@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用户注册</title>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="user-box">
+      <span class="title">注&nbsp;&nbsp;册</span>
+      <span class="tip" id="tip"></span>
+      <form onsubmit="submitRegister(this); return false;">
+        <label>
+          <span class="field-name">邮箱</span>
+          <input type="text" name="email" class="field-content">
+        </label>
+        <label>
+          <span class="field-name">密码</span>
+          <input type="password" name="password" class="field-content">
+        </label>
+        <label>
+          <span class="field-name">确认密码</span>
+          <input type="password" name="confirmPassword" class="field-content">
+        </label>
+        <button type="submit" class="btn">提交</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function submitRegister(fObj){
+      let hash = {},dataString = '';
+      let names = ['email','password','confirmPassword'];
+      let $tip = $('#tip');
+
+      console.dir(fObj);
+      names.forEach((name)=>{
+        let val = $('[name='+name+']').val();
+        hash[name] = val;
+        dataString += `${name}=${hash[name]}&`;
+      })
+
+      $tip.html('');
+
+      if(hash['email'] === ''){
+        $tip.html('邮箱不能为空');
+        return ;
+      } else if(hash['email'].indexOf('@') === -1){
+        $tip.html('邮箱格式有误！');
+        return ;
+      } else if(hash['password'] === '') {
+        $tip.html('密码不能为空！');
+        return ;
+      } else if(hash['confirmPassword'] !== hash['password']) {
+        console.log(hash['confirmPassword'],hash['password'])
+        $tip.html('两次输入密码不同，请确认！');
+        return ;
+      }
+
+      if(dataString.length > 0){
+        dataString = dataString.substring(0,dataString.length-1);
+      }
+      
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST','/userRegist');
+      xhr.setRequestHeader('Content-type','application/x-www-form-encodeurl;charset=utf-8');
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304 ){
+            let res = JSON.parse(xhr.responseText);
+            succcess(res);
+          }else{
+            let error = xhr;
+            fail(error);
+          }
+        }
+      }
+      xhr.send(dataString);
+
+      function succcess(data){
+        console.log('--------success--------')
+        console.log(data);
+      }
+      function fail(error){
+        console.log('--------error--------')
+        $tip.html(xhr.responseText);
+      }
+    }
+
+
+  </script>
+</body>
+</html>

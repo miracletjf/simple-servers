@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+.wrap {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.user-box {
+  padding: 20px;
+  border: solid 1px #ccc;
+  box-shadow: -1px 1px 10px #ccc;
+}
+.user-box .title {
+  display: block;
+  margin-bottom: 12px;
+  color: #666;
+  font-size: 24px;
+  text-align: center;
+}
+.user-box .tip {
+  display: block;
+  padding: 2px;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+  color: red;
+}
+.user-box label {
+  display: flex;
+  width: 300px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: solid 1px #e4e0db;
+}
+.user-box label .field-name {
+  display: block;
+  padding: 0 6px;
+  width: 80px;
+  line-height: 34px;
+  height: 34px;
+  font-size: 14px;
+  text-align: justify;
+  overflow: hidden;
+  border-right: solid 1px #e4e0db;
+  background-color: #f4f3f0;
+  color: #333;
+}
+.user-box label .field-name::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+.user-box label .field-content {
+  display: block;
+  padding: 6px 8px;
+  flex: 1;
+  line-height: 22px;
+  border: none;
+}
+.user-box .btn {
+  display: block;
+  margin: 30px auto 10px;
+  width: 200px;
+  line-height: 34px;
+  font-size: 18px;
+  text-indent: 0.5em;
+  letter-spacing: 0.5em;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #46b980;
+  border: none;
+  cursor: pointer;
+}
+.user-box .btn:hover {
+  background-color: #6bc799;
+}
