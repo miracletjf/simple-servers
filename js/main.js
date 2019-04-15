@@ -10,5 +10,5 @@ function sendAjas(){
       }
     }
   }
-  xhr.send('name = 阿毛');
+  xhr.send('name = test');
 }
