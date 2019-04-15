@@ -27,17 +27,16 @@ let server = http.createServer(function(request,response){
     let cookies = request.headers.cookie;
     let cookiesHash = {};
     let user = {};
-    console.log(cookies);
-    cookies.split('; ').forEach(item=>{
-      let itemArr = item.split('=');
-      cookiesHash[itemArr[0]] = itemArr[1];
-    });
-    console.log('cookiesHash',cookiesHash);
+    if(cookies){
+      cookies.split('; ').forEach(item=>{
+        let itemArr = item.split('=');
+        cookiesHash[itemArr[0]] = itemArr[1];
+      });
+    }
     let users = JSON.parse(fs.readFileSync('../database/users.json','utf-8'));
-    if(typeof users[cookiesHash['email']] !== undefined){
+    if(cookiesHash['email'] && typeof users[cookiesHash['email']] !== undefined){
       user['email'] = cookiesHash['email'];
       user['password'] = users[cookiesHash['email']];
-      console.log(user);
       string = string.replace('__email__',user['email']);
       string = string.replace('__password__',user['password']);
     }
@@ -49,10 +48,18 @@ let server = http.createServer(function(request,response){
     response.setHeader('Content-Type','text/javascript;charset=utf-8');
     response.write(string);
     response.end();
-  } else if(pathNoQuery === '/ajax'){
+  } else if(pathNoQuery === '/cors'){
+    getReauestBodyString(request,(res)=>{
+      response.setHeader('Access-Control-Allow-Origin','http://testa.com:8890');
+      response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+      response.setHeader('Content-Type','application/json;charset=utf-8');
+      response.write('跨域请求的数据：' + res);
+      response.end();
+    })
+  }else if(pathNoQuery === '/ajax'){
     getReauestBodyString(request,(res)=>{
       response.setHeader('Content-Type','application/json;charset=utf-8');
-      response.write(res);
+      response.write('服务器返回：' + res);
       response.end();
     })
   } else if(pathNoQuery === '/userRegist.html' && method === 'GET'){
@@ -69,7 +76,7 @@ let server = http.createServer(function(request,response){
       response.setHeader('Content-Type','application/json;charset=utf-8');
       res.split('&').forEach(item => {
         let itemArr = item.split('=');
-        hash[itemArr[0]] =itemArr[1];
+        hash[itemArr[0]] = itemArr[1];
       });
       string = JSON.stringify(hash);
       if(typeof datas[hash['email']] !== 'undefined'){
@@ -106,8 +113,6 @@ let server = http.createServer(function(request,response){
         response.write(`"邮箱不存在！"`)
       } else if(datas[user['email']] !== user['password']){
         response.statusCode = 400;        
-        console.log(user);
-        console.log(datas);
         response.write(`"密码不匹配！"`)
       } else {
         response.sendDate = 200;
@@ -126,7 +131,7 @@ let server = http.createServer(function(request,response){
 }) 
 
 server.listen(port);
-console.log(`监听${port}成功\n请打开http://localhose:${port}`);
+console.log(`监听${port}成功\n请打开http://localhost:${port}`);
 
 /* 获取请求体，String形式 */
 function getReauestBodyString(req,callback){

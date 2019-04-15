@@ -1,9 +1,60 @@
+/*#region reset*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   outline: none;
 }
+a {
+  text-decoration: none;
+}
+/*#endregion*/
+/*#region common*/
+.btn {
+  display: block;
+  margin: 30px auto 10px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 200px;
+  line-height: 34px;
+  font-size: 18px;
+  text-indent: 0.5em;
+  letter-spacing: 0.5em;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #46b980;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #6bc799;
+}
+/*#endregion*/
+/*#region user*/
+.container {
+  width: 980px;
+  margin: 30px auto;
+}
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.operate {
+  display: flex;
+  margin: 0 auto;
+  width: 980px;
+  justify-content: space-between;
+}
+.operate .btn {
+  width: 200px;
+}
+/*#endregion*/
+/*#region user*/
 .wrap {
   display: flex;
   width: 100vw;
@@ -63,21 +114,4 @@
   line-height: 22px;
   border: none;
 }
-.user-box .btn {
-  display: block;
-  margin: 30px auto 10px;
-  width: 200px;
-  line-height: 34px;
-  font-size: 18px;
-  text-indent: 0.5em;
-  letter-spacing: 0.5em;
-  text-align: center;
-  border-radius: 4px;
-  color: #fff;
-  background-color: #46b980;
-  border: none;
-  cursor: pointer;
-}
-.user-box .btn:hover {
-  background-color: #6bc799;
-}
+/*#endregion*/

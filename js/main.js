@@ -1,6 +1,6 @@
 function sendAjas(){
   let xhr = new XMLHttpRequest();
-  xhr.open('POST','/ajax');
+  xhr.open('POST','http://localhost:8890/cors');
   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencode;charset=utf-8')
   xhr.onreadystatechange = ()=>{
     if(xhr.readyState === 4){
@@ -10,5 +10,5 @@ function sendAjas(){
       }
     }
   }
-  xhr.send('name=阿毛');
+  xhr.send('name = 阿毛');
 }

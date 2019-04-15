@@ -1,9 +1,67 @@
+/*#region reset*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   outline: none;
 }
+a {
+  text-decoration: none;
+}
+button,input {
+
+}
+/*#endregion*/
+
+/*#region common*/
+.btn {
+  display: block;
+  margin: 30px auto 10px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 200px;
+  line-height: 34px;
+  font-size: 18px;
+  text-indent: 0.5em;
+  letter-spacing: 0.5em;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #46b980;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: lighten(#46b980,10%)
+  }
+}
+/*#endregion*/
+
+/*#region user*/
+.container {
+  width: 980px;
+  margin: 30px auto;
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+.operate {
+  display: flex;
+  margin: 0 auto;
+  width: 980px;
+  justify-content: space-between;
+  .btn {
+    width: 200px;
+  }
+}
+/*#endregion*/
+
+/*#region user*/
 .wrap {
   display: flex;
   width: 100vw;
@@ -62,24 +120,5 @@
       border: none;
     }
   }
-
-  .btn {
-    display: block;
-    margin: 30px auto 10px;
-    width: 200px;
-    line-height: 34px;
-    font-size: 18px;
-    text-indent: 0.5em;
-    letter-spacing: 0.5em;
-    text-align: center;
-    border-radius: 4px;
-    color: #fff;
-    background-color: #46b980;
-    border: none;
-    cursor: pointer;
-    &:hover {
-      background-color: lighten(#46b980,10%)
-    }
-  }
-  
 }
+/*#endregion*/

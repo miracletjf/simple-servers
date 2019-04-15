@@ -32,12 +32,12 @@
   </div>
 
   <script>
+
     function submitRegister(fObj){
       let hash = {},dataString = '';
       let names = ['email','password','confirmPassword'];
       let $tip = $('#tip');
 
-      console.dir(fObj);
       names.forEach((name)=>{
         let val = $('[name='+name+']').val();
         hash[name] = val;
@@ -84,6 +84,8 @@
       function succcess(data){
         console.log('--------success--------')
         console.log(data);
+
+        window.location.href = "./index.html"
       }
       function fail(error){
         console.log('--------error--------')
